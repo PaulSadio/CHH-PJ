@@ -1,0 +1,366 @@
+@import url('https://fonts.googleapis.com/css2?family=Jacques+Francois&display=swap');
+
+body {
+    background-color: #4e7edb;
+    font-family: Jacques Francois, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+}
+.layout {
+    margin: 2%;
+    border-radius: 25px;
+}
+.sign {
+    display: flex;
+    align-items: center;
+    width: 600px;
+    height: 500px;
+    border-radius: 25px;
+    margin: 7%;
+}
+.navbar {
+    background-color: #4e7edb;
+    display: flex;
+    border-radius: 15px;
+}
+img {
+    display: flex;
+    width: auto;
+    height: 100px;
+}
+h5 {
+    text-align: start;
+}
+.card-body {
+    background-color: #4e7edb;
+    height: fit-content;
+    width: 500px;
+    border-radius: 15px;
+}
+label, h1, .butn, .sidebar a {
+    color: #ecedf9;
+}
+.butn {
+    background-color: #1204db;
+    border-radius: 5px;
+    width: 100px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.password, .id {
+    background-color: #D9D9D9;
+    border-radius: 25px;
+    border: none;
+    width: 300px;
+}
+label {
+    display: flex;
+    justify-content: start;
+    padding-left: 70px;
+}
+.proposallayout {
+    margin: 2rem;
+    margin-top: 1rem;
+    padding: 0;
+    border: none;
+}
+/* layout  */
+.layoutnav {
+    color: #ecedf9;
+    width: 95%;
+    margin: 2rem;
+}
+.navlay {
+    display: flex;
+    height: 50px;
+}
+.logoutbtn {
+    font-size: 30px;
+    border: none;
+    background-color: #4e7edb;
+    color: #ecedf9;
+}
+span {
+    font-size: large;
+    margin: 0;
+    margin-right: 5px;
+    justify-content: center;
+}
+/* sidebar */
+.sidebar {
+  width: 300px;
+  height: 68vh;
+  overflow: hidden;
+  border-radius: 25px;
+  font-size: large;
+  padding-top: 1rem;
+}
+.sidebar a {
+    display: block;
+    padding: 16px;
+    text-decoration: none;
+    font-size: x-large;
+  }
+  .containerbody {
+    background-color: #4e7edb;
+    float: left;
+    margin: 0 2rem 2rem 2rem;
+    border-radius: 25px;
+  }
+  /* Adminevent */
+  .attendance, .members, .evaluation, .treasury, .fundraiser, .annualfee, .membermemo, .register {
+    display: block;
+    background-color: #ecedf9;
+    border-radius: 0 25px 25px 0;
+    padding: 2rem;
+  }
+  .memo {
+    display: block;
+    background-color: #ecedf9;
+    border-radius: 0 25px 25px 0;
+    padding: 1rem;
+  }
+  .eventname {
+    height: 30px;
+    width: fit-content;
+  }
+  .eventname input {
+    height: 30px;
+    width: 500px;
+  }
+  .table {
+    border: #4e7edb solid 2px;
+    margin: auto;
+    padding: 1rem;
+    border-radius: 25px;
+  }
+  .searchbar {
+    margin-bottom: 15px;
+  }
+  .search {
+    position: relative;
+  }
+  .fa-magnifying-glass {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    width: 20px;
+  }
+  .search input {
+    padding: 5px;
+    border-radius: 25px;
+  }
+.memolayout, .membermemolayout {
+    background-color: #4e7edb;
+    border-radius: 25px;
+    padding: 1rem;
+}
+.datatable {
+    background-color: #ecedf9;
+    border-radius: 0;
+}
+.upload {
+    background-color: #ecedf9;
+    border-radius: 25px;
+    margin: 1rem;
+    overflow: hidden;
+    display: block;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.upload h5 {
+    text-align: center;
+}
+.upload i {
+    color: #4e7edb ;
+    font-size: 70px;
+}
+.uploadfile {
+    display: block;
+}
+.memberlayout, .evaluationlayout, .treasurylayout, .fundraiserlayout, .annualfeelayout, .registrationlayout {
+    border: #4e7edb solid 2px;
+    border-radius: 25px;
+    height: 425px;
+}
+.membersearchbar, .treasurytotal {
+    padding: 1rem;
+}
+.treasurytotal {
+    border: #4e7edb solid 1px;
+    border-radius: 25px;
+    height: 325px;
+}
+.treasurybtn a {
+    border: none;
+    border-radius: 25px;
+    color: #ecedf9;
+    padding: 10px;
+}
+.total {
+    height: 50px;
+    background-color: #D9D9D9;
+    width: 450px;
+    border-radius: 25px;
+    border: none;
+}
+.treasurylayout {
+    padding: 1rem;
+}
+.fundfee {
+    font-size: larger;
+}
+.fundfee input {
+    background-color: #D9D9D9;
+    border-radius: 25px;
+    border: none;
+}
+.return  {
+    border: none;
+    border-radius: 25px;
+    background-color: #4e7edb;
+    color: #ecedf9;
+    width: 150px;
+}
+.proposaltable, .proposalsubmit {
+    background-color: #4e7edb;
+    border-radius: 25px;
+    padding: 1rem;
+}
+.calendar {
+    border: solid 1px #4e7edb;
+    margin: 2rem;
+    height: 100vh;
+    margin-top: 1rem;
+}
+.calendarevent, .eventdetail {
+    height: 100%;
+    border: #4e7edb solid 2px;
+}
+.calendarborder {
+    padding: 0;
+}
+.submitfile {
+    background-color: #ecedf9;
+    border: #ecedf9 solid 2px;
+    width: 75%;
+    height: 33vh;
+    border-radius: 25px;
+    color: black;
+}
+.submit {
+    background-color: #D9D9D9;
+    border: none;
+    border-radius: 25px;
+    height: 30px;
+    width: 100px;
+}
+.submitfile i {
+    color: #4e7edb;
+    font-size: 150px;
+}
+.proposalinfo {
+    font-size: 20px;
+}
+.proposalinfo label, .registerinfo label {
+    padding: 0;
+}
+.reg {
+    height: 40px;
+    background-color: #4e7edb;
+    color: #ecedf9;
+    width: 200px;
+    border: none;
+    border-radius: 25px;
+}
+.registerinfo input {
+    border: #4e7edb solid 2px;
+}
+.registerinfo {
+    width: 70%;
+}
+.sidebar a:active {
+    background-color: #ecedf9;
+    color: black;
+    border: none;
+}
+.sidebar a {
+    background-color: #4e7edb;
+    color: #ecedf9;
+    border: none;
+}
+.sidebar a:hover {
+    background-color: #ecedf9;
+    color: black;
+    border: none;
+}
+.navlink a {
+    background-color: #D9D9D9;
+    color: black;
+    border: black solid 1px;
+    padding: 2px 5px;
+}
+.searchbar a {
+    padding: 5px;
+}
+.regside a, .annside a{
+    background-color:#ecedf9;
+    color: black;
+}
+.containertable {
+    overflow-y: scroll;
+    height: fit-content;
+}
+.containerLR {
+    border: #1204db solid 2px;
+    align-items: center;
+    justify-content:space-around;
+}
+.profilecard img{
+    height: 200px;
+    border-radius: 50%;
+}
+.profilecard {
+    border: none;
+    display: inline-block;
+}
+.containerprofile {
+    display: inline-block;
+}
+.containerprofile input {
+    background-color: #D9D9D9;
+    border-radius: 25px;
+    width: 70%;
+}
+.contactnum input{
+    border-radius: 0 25px 25px 0;
+}
+.bday {
+    display: inline-block;
+}
+.view {
+    border: #4e7edb solid 2px;
+    border-radius: 25px;
+}
+.card img {
+    border-radius: 50%;
+}
+.card {
+    border: none;
+}
+.view input {
+    width: 70%;
+    background-color: #D9D9D9;
+    border: none;
+}
+
+#calendar{
+    width:100vw;
+    height: 100vh;
+    font-family: 'Times New Roman', Times, serif;
+    color: purple;
+}
+
