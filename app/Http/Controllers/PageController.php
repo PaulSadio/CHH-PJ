@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\addmember;
 use App\Models\Adminmemo;
+use App\Models\Annualfee;
 use App\Models\Fundraiser;
 use App\Models\Memberss;
 use App\Models\Proposals;
@@ -12,16 +13,13 @@ use App\Models\Registrations;
 use App\Models\Remarks;
 use Dflydev\DotAccessData\Data;
 use Illuminate\Http\Request;
+use PhpParser\Builder\Property;
 use Spatie\LaravelIgnition\Http\Requests\UpdateConfigRequest;
 
 class PageController extends Controller
 {
     public function signin() {
         return view('signin');
-    }
-
-    public function welcome() {
-        return view('welcome');
     }
 
     public function registermember() {
@@ -35,35 +33,67 @@ class PageController extends Controller
     public function member() {
         return view('member.memberhome');
     }
-
+ 
     public function annualfee() {
-        return view('admin.treasuryannualfee');
+        $member = Memberss::all();
+        $fees = Annualfee::all();
+        return view('admin.treasuryannualfee', ['member'=>$member], ['fees'=>$fees]);
+    }
+    public function updateAnnualFeeStatus($id)
+    {
+        $member = Memberss::with('annualFees')->find($id);
+        foreach ($member->annualFees as $annualFee) {
+            $annualFee->annualfee_status = $annualFee->annualfee_status ? 0 : 1;
+            $annualFee->save();
+        }
+        $firstAnnualFee = $member->annualFees->first();
+        if ($firstAnnualFee) {
+            $member->update(['annualfee_status' => $firstAnnualFee->annualfee_status]);
+        }
+
+        return redirect()->back();
     }
 
     public function evaluation() {
         $member = Memberss::all();
-        return view('admin.evaluation', ['member'=>$member]);
+        return view('admin.evaluation', compact('member'));
     }
-    public function view(Memberss $member, Proposals $adminproposal, Remarks $remarks) {
-        $adminproposal = Proposals::all();
-        $remarks = Remarks::all();
-        return view('admin.view', compact('member', 'adminproposal', 'remarks'));
+    public function view(Memberss $member, Proposals $adminproposal)
+    {
+        $remarks = $member->remarks()->latest()->get();
+        return view('admin.view', compact('remarks', 'adminproposal'), ['member' => $member]);
     }
-    public function viewstore(Request $request) {
-        $data = [
-            'memberremark' => $request -> remark
-        ];
-        $newView = Remarks::create($data);
-        return redirect(route('evaluation'));
-        
+    public function viewstore(Request $request, Memberss $member) 
+{
+    $request->validate([
+        'memberremark' => 'required|string',
+    ]);
+
+    // Assuming 'remarks' is the relationship in your Memberss model
+    $remark = $member->remarks()->first();
+
+    // Create or update the remark
+    if ($remark) {
+        $remark->update(['memberremark' => $request->input('memberremark')]);
+    } else {
+        $member->remarks()->create(['memberremark' => $request->input('memberremark')]);
     }
+
+    return redirect()->route('evaluation', ['member' => $member])->with('success', 'Remark added successfully');
+}
+
+
+    
+
+
+    
 
     public function treasury() {
         $data = Fundraiser::all();
-        $totalfee = 9000;
+        $totalfee = Annualfee::where('annualfee_status', 1)->sum('annualfee_amount');
         $total = $data->sum('fundraiser_amount');
         $totaltreasury = $total + $totalfee;
-        return view('admin.treasury', compact('total'), compact('totaltreasury'));
+        return view('admin.treasury', compact('total', 'totaltreasury', 'totalfee'));
     }
     public function fundraiser() {
         $totalFund = 0;
@@ -84,8 +114,6 @@ class PageController extends Controller
     public function adminmemo(Request $request) {
         $announcement = Adminmemo::all();
         return view('admin.memo', ['announcement'=>$announcement]);
-        
-
     }
 
     public function announcement() {
@@ -123,18 +151,32 @@ class PageController extends Controller
     }
     // download member announcement
     
+    public function attendaceid($id) {
+        $proposal = Proposals::find($id);
+
+        if ($proposal !== false && $proposal !== null) {
+            // Record found, you can safely access $proposal->id
+            $proposalId = $proposal->id;
+        } else {
+            // Record not found, handle accordingly
+            // For example, redirect or show an error message
+            abort(404); // or redirect()->route('not.found');
+        }
+    }
 
     public function attendance() {
-        $attendance = Registrations::all();
-        $adminproposal = Proposals::all();
-        return view('admin.attendance', ['attendance'=>$attendance], ['adminproposal'=>$adminproposal]);
+        $adminproposal = Proposals::where('propstatus', 'approved')->get();
+        $attendance = Proposals::with('registrations')->get();
+       
+        return view('admin.attendance', compact('adminproposal', 'attendance'));
+
     }
     public function registration() {
         return view('member.memberregistration');
     }
     public function regstore(Request $request) {
         $data = [
-            'eventid'=> $request -> eventid,
+            'event_id'=> $request -> eventid,
             'participantname'=> $request -> participantname,
             'participantid'=> $request -> participantid,
             'participantemail'=> $request -> participantemail
@@ -152,11 +194,6 @@ class PageController extends Controller
         return view('admin.members', ['addmember'=>$addmember]);
     }
     public function store(Request $request) {
-        // $request->validate([
-        //     'profilepic' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        // ]);
-        // $profilepicpath = $request->file('profilepic')->store('profilepic', 'public');
-
         $data = [
         'membername' => $request -> membername,
         'memberaddress'=> $request -> memberaddress,
@@ -170,24 +207,6 @@ class PageController extends Controller
 
         $newData = Memberss::create($data);
         return redirect(route('adminmembers'));
-
-        // $member = new Memberss;
-        // $member->membername = $request->input('membername');
-        // $member->memberaddress = $request->input('memberaddress');
-        // $member->memberemail = $request->input('memberemail');
-        // $member->contactnumber = $request->input('contactnumber');
-        // $member->memberage = $request->input('memberage');
-        // $member->membersex = $request->input('membersex');
-        // $member->birthday = $request->input('birthday');
-        // if ($request->file('profilepic')) {
-        //     $file = $request->file('profilepic');
-        //     $extention = $file->getClientOriginalExtension();
-        //     $filename = time().'.'.$extention;
-        //     $file->move('upload/profile/' , $filename);
-        //     $member->profilepic = $filename;
-        // }
-        // $member->save();
-        // return redirect()->back()->width('status', 'Member profile added');
     }
     public function update(Memberss $member, Request $request) {
         $data = [
@@ -206,6 +225,20 @@ class PageController extends Controller
     public function edit(Memberss $member) {
         return view('admin.adminmemberedit', ['member'=>$member]);
     }
+    public function updatestatus($id)
+    {
+        try {
+            $member = Memberss::findOrFail($id);
+            $member->memberstatus = $member->memberstatus ? 0 : 1;
+            $member->save();
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            // Handle member not found exception (redirect, show an error, etc.)
+            return redirect()->back()->with('error', 'Member not found');
+        }
+    
+        return redirect()->back()->with('success', 'Member status updated successfully');
+    }
+
 
     public function adminproposal() {
         $adminproposal = Proposals::all();
@@ -280,5 +313,20 @@ public function downloadmemo($memofile) {
         abort(404, 'oh noes! Iyakies');
     }
 }
-// download memo
+
+    public function proposalApprove(Proposals $proposal)
+    {
+        if ($proposal->propstatus === 'pending') {
+            $proposal->update(['propstatus' => 'approved']);
+            return redirect()->back()->with('propstatus', 'Proposal approved!');
+        }
+
+        return redirect()->back()->with('status', 'Proposal is not pending.');
+    }
+
+    public function proposalDecline(Proposals $proposal)
+    {
+        $proposal->delete();
+        return redirect()->back()->with('propstatus', 'Proposal declined!');
+    }
 }

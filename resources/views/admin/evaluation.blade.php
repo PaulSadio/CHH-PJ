@@ -7,7 +7,7 @@
                 <form class="d-flex justify-content-end" role="search">
                     <div class="search">
                         <input type="search" id="searchInput" class="form-control-me-2" placeholder="Search" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        
                     </div>
                 </form>
             </div>
@@ -27,7 +27,9 @@
                     <td>{{ $member->membername }}</td>
                     <td>
                         <div>
-                            <a href="{{ route('view', ['member'=>$member]) }}"><i class="fa-solid fa-circle-info"></i> View</a>
+                            {{-- <a href="{{ route('view', ['member'=>$member]) }}"><i class="fa-solid fa-circle-info"></i> View</a> --}}
+                            <a href="{{ route('view', ['member' => $member]) }}"><i class="fa-solid fa-circle-info"></i>View</a>
+
                         </div>
                     </td>
                 </tr>

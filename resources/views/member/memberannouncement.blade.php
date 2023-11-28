@@ -12,7 +12,7 @@
                 <form class="d-flex justify-content-end" role="search">
                     <div class="search">
                         <input type="search" id="searchInput" class="form-control-me-2" placeholder="Search" aria-label="Search">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                        
                     </div>
                 </form>
             </div>

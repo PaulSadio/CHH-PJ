@@ -9,6 +9,7 @@ class Fundraiser extends Model
 {
     use HasFactory;
     protected $table = 'fundraiser';
+    protected $primarykey = 'id';
     protected $fillable = [
         'fundraiser_title',
         'fundraiser_amount',

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('propdate');
             $table->string('proplocation');
             $table->string('propfile');
+            $table->string('propstatus')->default('pending');
             $table->timestamps();
         });
     }

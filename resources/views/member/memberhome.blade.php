@@ -3,14 +3,10 @@
     <div class="container justify-content-center d-flex">
         <div id='calendar'></div>
     
-    <script>
+<script>
     $(document).ready(function () {
         var calendar = $('#calendar').fullCalendar({
             editable:true,
-            header:{
-                
-               
-            },
             events:'/adminhome',
             selectable:false,
             selectHelper: true,

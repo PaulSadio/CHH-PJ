@@ -17,7 +17,7 @@ class EventController extends Controller
             return response()->json($data);
         }
 
-        return view('adminhome');
+        return view('index');
     }
 
     public function store(Request $request)

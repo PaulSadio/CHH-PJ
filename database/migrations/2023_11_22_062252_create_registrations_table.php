@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('registrations', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('eventid');
+            $table->unsignedInteger('event_id')->nullable();
             $table->string('participantname');
-            $table->integer('participantid');
+            $table->integer('participantid')->nullable();
             $table->string('participantemail');
+            $table->integer('participant_status')->default(0);
+            $table->foreign('event_id')->references('id')->on('proposals');
         });
     }
 

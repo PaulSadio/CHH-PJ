@@ -9,10 +9,15 @@ class Registrations extends Model
 {
     use HasFactory;
     protected $table = 'registrations';
+    protected $primaryKey = 'id';
     protected $fillable = [
-        'eventid',
         'participantname',
         'participantid',
         'participantemail'
     ];
+
+    public function proposal()
+    {
+        return $this->belongsTo(Proposals::class, 'event_id', 'id');
+    }
 }

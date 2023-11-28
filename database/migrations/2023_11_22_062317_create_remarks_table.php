@@ -11,12 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('remarks', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-            $table->string('memberremark');
+        // Schema::create('remarks', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->timestamps();
+        //     $table->string('memberremark');
             
-        });
+        // });
+        if (!Schema::hasTable('remarks')) {
+            Schema::create('remarks', function (Blueprint $table) {
+                $table->bigIncrements('id');
+                $table->unsignedBigInteger('member_id');
+                $table->text('memberremark');
+                $table->timestamps();
+        
+                $table->foreign('member_id')->references('id')->on('memberss')->onDelete('cascade');
+            });
+        }
+        
+        
     }
 
     /**

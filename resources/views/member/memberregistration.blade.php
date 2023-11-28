@@ -12,7 +12,7 @@
             <div class="container registerinfo">
                     <div class="mt-3">
                         <label for="eventid" style="color: black;">Event ID:</label>
-                        <input type="number" class="form-control" id="eventid" name="eventid" required>
+                        <input type="number" class="form-control" id="eventid" name="event_id" required>
                     </div>
                     <div class="mt-3">
                         <label for="participantname" style="color: black;">Name:</label>

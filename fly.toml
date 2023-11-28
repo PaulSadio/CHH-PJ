@@ -1,9 +1,9 @@
-# fly.toml app configuration file generated for chh-team1-svp-test-app on 2023-11-24T10:46:23+08:00
+# fly.toml app configuration file generated for chh-team1-svp-version1-app on 2023-11-24T16:59:18+08:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = "chh-team1-svp-test-app"
+app = "chh-team1-svp-version1-app"
 primary_region = "sin"
 console_command = "php /var/www/html/artisan tinker"
 
@@ -14,6 +14,13 @@ console_command = "php /var/www/html/artisan tinker"
 
 [env]
   APP_ENV = "production"
+  APP_NAME = "chh-team1-svp-version1-app"
+  DB_CONNECTION = "pgsql"
+  DB_DATABASE = "postgres"
+  DB_HOST = "db.kxbvkxiertlbugxhfqui.supabase.co"
+  DB_PASSWORD = "chh-team1-svp-db"
+  DB_PORT = "5432"
+  DB_USERNAME = "postgres"
   LOG_CHANNEL = "stderr"
   LOG_LEVEL = "info"
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"

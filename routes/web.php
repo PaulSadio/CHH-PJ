@@ -20,13 +20,14 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/welcome', [PageController::class, 'welcome']);
+
 // Route::get('/dashboard', function () {
 //     return view('dashboard');
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/home', [HomeController::class, 'login'])->middleware('auth')->name('home');
-
+Route::patch('/update-annual-fee-status/{id}', [PageController::class, 'updateAnnualFeeStatus'])
+    ->name('updateAnnualFeeStatus');
 // Route::middleware('auth')->group(function () {
 //     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
 //     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -45,11 +46,15 @@ Route::get('/adminproposal', [PageController::class, 'adminproposal'])->name('ad
 // Route::get('/admin', [PageController::class, 'admin'])->name('admin');
 
 // Route::get('/member', [PageController::class, 'member'])->name('member');
-
-
 Route::get('/evaluation', [PageController::class, 'evaluation'])->name('evaluation');
-Route::get('/view/{member}', [PageController::class, 'view'])->name('view');
-Route::post('/view/{member}/remarks', [PageController::class, 'viewstore'])->name('viewstore');
+Route::get('/members/{member}/view', [PageController::class, 'view'])->name('view');
+Route::post('/view/{member}/store-remark', [PageController::class, 'viewstore'])->name('viewstore');
+
+
+
+// Route::get('/evaluation', [PageController::class, 'evaluation'])->name('evaluation');
+// Route::get('/view/{member}', [PageController::class, 'view'])->name('view');
+// Route::post('/view/{member}/remarks', [PageController::class, 'viewstore'])->name('viewstore');
 
 Route::get('/adminmembers', [PageController::class, 'adminmembers'])->name('adminmembers');
 
@@ -65,6 +70,8 @@ Route::get('/treasury', [PageController::class, 'treasury'])->name('treasury');
 
 Route::get('/addmember', [PageController::class, 'addmember'])->name('addmember');
 Route::post('/addmember', [PageController::class, 'store'])->name('store');
+Route::patch('/updatestatus/{id}', [PageController::class, 'updatestatus'])
+    ->name('updatestatus');
 
 // Route::get('/proposal', [PageController::class, 'proposal'])->name('proposal');
 // Route::post('/proposal', [PageController::class, 'propstore'])->name('propstore');
@@ -97,4 +104,8 @@ Route::post('/adminmemo/store', [PageController::class, 'memostore'])->name('mem
 Route::get('/announcement', [PageController::class, 'announcement'])->name('announcement');
 Route::get('/announcement/{memofile}', [PageController::class, 'downloadannouncement'])->name('downloadannouncement');
 
-// download member announcment
+Route::post('/proposal/approve/{proposal}', [PageController::class, 'proposalApprove'])->name('proposalApprove');
+Route::delete('/proposal/decline/{proposal}', [PageController::class, 'proposalDecline'])->name('proposalDecline');
+
+// In your routes/web.php file
+Route::get('/attendance/{id}', [PageController::class, 'attendanceid'])->name('attendanceid');

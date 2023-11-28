@@ -8,7 +8,7 @@
                     <div class="container fundfee">
                         <div class="d-flex justify-content-between mt-3">
                             <label class="" style="color: black; padding-left: 100px; font-size: 30px;">Annual Fee: </label>
-                            <input type="number" class="fee text-center" disabled>
+                            <input type="number" class="fee text-center" value="{{ $totalfee }}" disabled>
                         </div>
                         <div class="d-flex justify-content-between mt-3">
                             <label style="color: black; padding-left: 90px; font-size: 30px;">Fund Raiser: </label>

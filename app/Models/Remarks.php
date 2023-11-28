@@ -12,7 +12,13 @@ class Remarks extends Model
         return $this->belongsTo(Memberss::class, 'id');
     }
     protected $table = 'remarks';
+    protected $primaryKey = 'id';
     protected $fillable = [
         'memberremark'
     ];
+
+    public function member()
+    {
+        return $this->belongsTo(Memberss::class);
+    }
 }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->integer('contactnumber');
             $table->integer('memberage');
             $table->string('membersex');
+            $table->integer('memberstatus')->default(1); //1: active, 0:inactive
             $table->date('birthday');
             $table->string('profilepic', 300)->nullable();
             $table->timestamps();
