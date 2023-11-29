@@ -30,7 +30,7 @@
                                     <form method="POST" action="{{ route('updateAnnualFeeStatus', $member->id) }}">
                                         @csrf
                                         @method('PATCH')
-                                        <button type="submit" class="btn btn-{{ $member->annualFees->first()->annualfee_status ? 'success' : 'secondary' }}" onclick="confirmStatusChange()">
+                                        <button type="submit" class="btn btn-{{ $member->annualFees->first()->annualfee_status ? 'success' : 'secondary' }}" onclick="confirmStatusChange({{ $member->id }})">
                                             @if ($member->annualFees->first()->annualfee_status == 1)
                                                 Paid
                                             @else
@@ -47,10 +47,10 @@
         </div>
     </div>
     <script>
-        function confirmStatusChange() {
+        function confirmStatusChange(memberid) {
             var confirmed = window.confirm("Are you sure you want to change the status?");
             if (confirmed) {
-                document.getElementById("updateForm").submit();
+                document.getElementById("updateForm-" + memberid).submit();
             }
         }
     </script>

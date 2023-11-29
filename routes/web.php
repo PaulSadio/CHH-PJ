@@ -109,3 +109,7 @@ Route::delete('/proposal/decline/{proposal}', [PageController::class, 'proposalD
 
 // In your routes/web.php file
 Route::get('/attendance/{id}', [PageController::class, 'attendanceid'])->name('attendanceid');
+
+Route::get('/proposallist', [PageController::class, 'proposallist'])->name('proposallist');
+
+Route::get('/eventsumarry', [PageController::class, 'eventsumarry'])->name('eventsumarry');

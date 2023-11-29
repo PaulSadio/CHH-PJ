@@ -2,7 +2,7 @@
 @section('content')
 <div class="containerbody d-flex">
     <div class="sidebar annside">
-        <a href="{{ route('announcement') }}"><i class="fa-solid fa-envelope"></i> Memo</a>
+        <a href="{{ route('announcement') }}"><i class="fa-solid fa-envelope"></i> Announcement</a>
     </div>
 
     <div class="container membermemo">

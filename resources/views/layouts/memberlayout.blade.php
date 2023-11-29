@@ -37,7 +37,7 @@
                             <a href="{{ route('announcement') }}">Announcement</a>
                         </div>
                         <div class="registration mx-3">
-                            <a href="{{ route('registration') }}">Registration</a>
+                            <a href="{{ route('registration') }}">Attendance</a>
                         </div>
                     </div>
                     <div class="logout">

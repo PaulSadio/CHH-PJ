@@ -22,6 +22,11 @@ class PageController extends Controller
         return view('signin');
     }
 
+    public function eventsumarry() {
+        $member = Memberss::all();
+        return view('admin.eventsumarry', compact('member'));
+    }
+
     public function registermember() {
         return view('auth.register');
     }
@@ -166,11 +171,18 @@ class PageController extends Controller
 
     public function attendance() {
         $adminproposal = Proposals::where('propstatus', 'approved')->get();
-        $attendance = Proposals::with('registrations')->get();
+        // $attendance = Proposals::with('registrations')->get();
+        $attendance = Registrations::all();
        
         return view('admin.attendance', compact('adminproposal', 'attendance'));
-
     }
+    public function proposallist() {
+        $proposal = Proposals::all();
+
+        return view('member.proposallist', compact('proposal'));
+    }
+
+
     public function registration() {
         return view('member.memberregistration');
     }
@@ -326,7 +338,11 @@ public function downloadmemo($memofile) {
 
     public function proposalDecline(Proposals $proposal)
     {
-        $proposal->delete();
-        return redirect()->back()->with('propstatus', 'Proposal declined!');
+        if ($proposal->propstatus === 'pending') {
+            $proposal->update(['propstatus' => 'declined']);
+            return redirect()->back()->with('propstatus', 'Proposal declined!');
+        }
+
+        return redirect()->back()->with('status', 'Proposal is not pending.');
     }
 }

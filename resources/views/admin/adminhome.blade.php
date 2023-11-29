@@ -1,8 +1,17 @@
 @extends('layouts.adminlayout')
 @section('content')
-    <div class="container justify-content-center d-flex">
-        <div id='calendar'></div>
-
+    <div class="container justify-content-between d-flex">
+        <form class="d-flex flex-row g-3">
+            <div class="col-3">
+                <h3>Instruction:</h3>
+                <p style="color: black;">To use the Calendar select the date on which you want to add the event.</p><br>
+                <h4>To Delete:</h4>
+                <p style="color: black;">To delete select the Event name and confirm to delete the event.</p>
+            </div>
+            <div class="col-9">
+                <div id='calendar'></div>
+            </div>
+        </form>
 <script>
     $(document).ready(function () {
         var calendar = $('#calendar').fullCalendar({

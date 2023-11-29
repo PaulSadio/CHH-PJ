@@ -51,8 +51,14 @@
                                     
                                     <form id="declineForm_{{ $adminproposal->id }}" action="{{ route('proposalDecline', ['proposal' => $adminproposal]) }}" method="post">
                                         @csrf
-                                        @method('delete')
-                                        <button type="button" class="btn btn-danger mx-3" onclick="confirmAndSubmit('declineForm_{{ $adminproposal->id }}')">Decline</button>
+                                        @method('post')
+                                        <button type="button" class="btn btn-danger mx-3" onclick="confirmAndSubmit('declineForm_{{ $adminproposal->id }}')">
+                                            @if ($adminproposal->propstatus === 'declined')
+                                            Declined
+                                        @else
+                                            Decline
+                                        @endif
+                                        </button>
                                     </form>
                                     
                                    

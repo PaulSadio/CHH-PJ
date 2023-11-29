@@ -1,7 +1,11 @@
 @extends('layouts.memberlayout')
 @section('content')
-<div class="card proposallayout" style="width: 95%;">
-    <h1 class="display-4" style="color: black">Proposal</h1>
+<div class="card proposallayout " style="width: 95%;">
+    <button style="width: 500px; margin-left: 2rem; border: none; border-radius: 25px;" class="justify-content-center mb-3">
+      <h1 class="display-4" style="color: black">
+        <a href="{{ route('proposallist') }}">Proposals</a>
+      </h1>
+    </button>
     <form action="{{ route('propstore') }}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('post')
@@ -33,7 +37,12 @@
                   </div>
                   <div class="mb-2">
                     <label for="proplocation" class="form-label">Location:</label>
-                    <input type="text" class="form-control" id="proplocation" name="proplocation" required>
+                    <select id="proplocation" name="proplocation" style="width: 300px" required>
+                      <option value="Bacolod City"> Bacolod City</option>
+                      <option value="Talisay City"> Talisay City</option>
+                      <option value="Silay City"> Silay City</option>
+
+                    </select>
                   </div>
         </div>
     </div>

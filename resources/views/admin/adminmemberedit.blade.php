@@ -20,9 +20,32 @@
                             <label for="age" style="color: black; padding: 0;">Age:</label>
                             <input type="number" class="text-center" name="memberage" placeholder="age" value="{{ $member->memberage }}" style="width: 100px" required>
                         </div>
-                        <div>
+                        {{-- <div>
                             <label for="sex" style="color: black; padding: 0;">Sex:</label>
                             <input type="text" class="text-center" name="membersex" placeholder="M/F" value="{{ $member->membersex }}" style="width: 100px" required>
+                        </div> --}}
+                        <div>
+                            <label for="membersex" style="color: black; padding: 0;">Sex:</label>
+                            <select name="membersex" class="text-center" style="width: 100px" required>
+                                @if ( $member->membersex === 'F') 
+                                    <option value="{{ $member->membersex }}">
+                                        @if($member->membersex === 'F')
+                                            Female
+                                        @else 
+                                            Male
+                                        @endif
+                                    </option>
+                                    <option value="M">Male</option>
+                                @else
+                                    <option value="{{ $member->membersex }}">
+                                        @if($member->membersex === 'F')
+                                            Female
+                                        @else 
+                                            Male
+                                        @endif
+                                    <option value="F">Female</option>
+                                @endif
+                            </select>
                         </div>
                     </div>
                     <div class="bday">

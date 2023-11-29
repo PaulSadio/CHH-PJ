@@ -20,8 +20,12 @@
                         </div>
                         <div>
                             <label for="membersex" style="color: black; padding: 0;">Sex:</label>
-                            <input type="text" name="membersex" class="text-center" placeholder="M/F" style="width: 100px" required>
+                            <select name="membersex" class="text-center" style="width: 100px" required>
+                                <option value="M">Male</option>
+                                <option value="F">Female</option>
+                            </select>
                         </div>
+                        
                     </div>
 
                     <div class="bday">

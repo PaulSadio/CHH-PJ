@@ -4,12 +4,19 @@
     @include('sidebar.adminsidebar')
 
     <div class="container attendance">
-        <div class="container eventname mt-3">
-            <select id="eventTitle" name="myHouse" class="form-control text-center"style="width: 400px">
-                @foreach ($adminproposal as $admin)
-                    <option value="{{ $admin->proptitle }}" style="width: 400px">{{ $admin->proptitle }}</option>
-                @endforeach
-            </select>
+        <div class="container eventname d-flex flex-row justify-content-around mt-3">
+            <div class="container">
+                <select id="eventTitle" name="eventtitle" class="form-control text-center"style="width: 400px">
+                    @foreach ($adminproposal as $admin)
+                        <option value="{{ $admin->proptitle }}" style="width: 400px">{{ $admin->proptitle }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="container" >
+                <a href="{{ route('eventsumarry') }}">
+                    <input type="button" value="Members Attendance Sumarry" style="width: 300px; border: none; border-radius: 25px; background-color: #4e7edb; color:#ecedf9; height: 35px;">
+                </a>
+            </div>
         </div>
 
         <div class="container table mt-5">
@@ -30,18 +37,18 @@
                     </thead>
                     <tbody>
                         @foreach ($attendance as $attendee)
-                            @php
+                            {{-- @php
                                 $admin = $adminproposal->where('id', $attendee->event_id)->first();
-                            @endphp
+                            @endphp --}}
 
-                            @if ($admin)
+                            {{-- @if ($admin) --}}
                                 <tr>
                                     <td>{{ $attendee->participantname }}</td>
                                     <td class="text-center">
                                         <button style="background-color: #32D942; width: 100px;" onclick="attendanceBtn()" id="attendancebtn">Present</button>
                                     </td>
                                 </tr>
-                            @endif
+                            {{-- @endif --}}
                         @endforeach
                     </tbody>
                 </table>
